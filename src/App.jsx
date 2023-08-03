@@ -8,16 +8,19 @@ const PageWrapper = styled.div`
   min-width: 100%;
   min-height: 100vh;
   display: flex;
+  margin-bottom: 60px;
   flex-direction: column;
+  font-size: 20px;
+  font-family: "Arial";
 `;
 
 const VareWrapper = styled.div`
-    background-color: ${({farge}) => (farge ? farge : `#C4C4C4`)};
-    height: 40px;
-    display: flex;
-    margin: 10px;
-    padding: 10px;
-    align-items: center;
+  background-color: ${({ farge }) => (farge ? farge : `#C4C4C4`)};
+  height: 40px;
+  display: flex;
+  margin: 10px;
+  padding: 10px;
+  align-items: center;
 `;
 
 const IconWrapper = styled.img`
@@ -28,8 +31,6 @@ const IconWrapper = styled.img`
 `;
 
 const VareNavn = styled.p`
-  font-size: 24px;
-  font-family: "Calibri";
   margin: 0;
   padding-left: 10px;
   white-space: nowrap;
@@ -58,12 +59,27 @@ const RightWrapper = styled.div`
   align-items: center;
 `;
 
-const Filter = styled.div``;
-const KategoriKnapp = styled.button``;
+const Meny = styled.div`
+  height: 100px;
+  position: fixed;
+  width: 100%;
+  bottom: 0px;
+  z-index: 100;
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const KategoriKnapp = styled.button`
+  height: 50px;
+  width: 16%;
+  flex: 1 0 16%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+`;
 
 const HandlelisteApp = () => {
   const [liste, setListe] = useState(hentDefaultVareliste);
-  const [valgtKategori, setValgtKategori] = useState(Kategori.FruktOgGrønt);
+  const [valgtKategori, setValgtKategori] = useState(Kategori.Frukt);
 
   const leggTil = (id) => {
     const oppdatertVare = liste[id];
@@ -89,28 +105,26 @@ const HandlelisteApp = () => {
     };
     setListe(oppdatertListe);
   }
+
   let filtrertListe;
   if(valgtKategori.tittel === Kategori.Handlevogn.tittel){
     filtrertListe = filtrerMineValgteVarer(liste);
   } else {
     filtrertListe = filtrerListe(liste, valgtKategori);
   }
-  console.log(filtrertListe);
+
   return (
     <PageWrapper>
-      <Filter>
-          {Object.values(Kategori).map((kategori) => (
-            <KategoriKnapp key={Kategori.tittel} onClick={() => setValgtKategori(kategori)}>{kategori.tittel}</KategoriKnapp>
-        ))}
-      </Filter>
       {filtrertListe.map(([id, vare]) => (
-        <div key={`Vare-${id}`}>
-          <VareWrapper farge={vare.kategori.farge}>
-            <IconWrapper />
-            <VareNavn>
-              {vare.navn}
-            </VareNavn>
-            <RightWrapper>
+        <VareWrapper
+          key={`vare-${id}`}
+          farge={vare.kategori.farge}
+        >
+          <IconWrapper />
+          <VareNavn>
+            {vare.navn}
+          </VareNavn>
+          <RightWrapper>
             <Antall>{vare.antall}</Antall>
             <Pluss onClick={() => leggTil(id)}>
               +
@@ -118,11 +132,14 @@ const HandlelisteApp = () => {
             <Minus onClick={() => trekkFra(id)}>
               -
             </Minus>
-            </RightWrapper>
-          </VareWrapper>
-          
-        </div>
+          </RightWrapper>
+        </VareWrapper>
       ))}
+       <Meny>
+        {Object.values(Kategori).map((kategori) => (
+          <KategoriKnapp key={`kat-${kategori.tittel}`} onClick={() => setValgtKategori(kategori)}>{kategori.tittel}</KategoriKnapp>
+        ))}
+      </Meny>
     </PageWrapper>
   );
 }
