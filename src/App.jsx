@@ -4,7 +4,7 @@ import { filtrerListe, filtrerMineValgteVarer, hentDefaultVareliste } from './Va
 import { Kategori } from './Varer/VareListe';
 
 const PageWrapper = styled.div`
-  background-color: #f96449;
+  background-color: #2C4C66;
   min-width: 100%;
   min-height: 100vh;
   display: flex;
@@ -18,8 +18,9 @@ const VareWrapper = styled.div`
   background-color: ${({ farge }) => (farge ? farge : `#C4C4C4`)};
   height: 40px;
   display: flex;
-  margin: 10px;
+  margin: 5px 10px;
   padding: 10px;
+  border-radius: 5px;
   align-items: center;
 `;
 
@@ -39,14 +40,24 @@ const VareNavn = styled.p`
 `;
 
 const Pluss = styled.button`
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
+  color: green;
+  font-size: 32px;
   margin-right: 10px;
+  background: transparent;
+  border-radius: 50%;
+  border: 2px solid green;
 `;
 
 const Minus = styled.button`
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
+  color: red;
+  font-size: 32px;
+  background: transparent;
+  border-radius: 50%;
+  border: 2px solid red;
 `;
 
 const Antall = styled.p`
@@ -67,6 +78,7 @@ const Meny = styled.div`
   z-index: 100;
   display: flex;
   flex-wrap: wrap;
+  border-top: 1px solid lightgray;
 `;
 
 const KategoriKnapp = styled.button`
@@ -75,6 +87,9 @@ const KategoriKnapp = styled.button`
   flex: 1 0 16%;
   white-space: nowrap;
   text-overflow: ellipsis;
+  border: none;
+  background-color: #2C4C66;
+  color: ${({ farge }) => (farge ? farge : `#C4C4C4`)};
 `;
 
 const HandlelisteApp = () => {
@@ -137,7 +152,13 @@ const HandlelisteApp = () => {
       ))}
        <Meny>
         {Object.values(Kategori).map((kategori) => (
-          <KategoriKnapp key={`kat-${kategori.tittel}`} onClick={() => setValgtKategori(kategori)}>{kategori.tittel}</KategoriKnapp>
+          <KategoriKnapp
+            key={`kat-${kategori.tittel}`}
+            onClick={() => setValgtKategori(kategori)}
+            farge={kategori.farge}
+          >
+            {kategori.tittel}
+          </KategoriKnapp>
         ))}
       </Meny>
     </PageWrapper>

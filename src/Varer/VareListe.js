@@ -36,7 +36,7 @@ export const Kategori = {
     farge: "#aaaaaa",
   },
   Todo3: {
-    tittel: "Todo4",
+    tittel: "Todo3",
     farge: "#aaaaaa",
   },
   Todo4: {
@@ -45,7 +45,7 @@ export const Kategori = {
   },
   Handlevogn: {
     tittel: "Cart",
-    farge: "#cccccc",
+    farge: "#000000",
   },
   
 }
