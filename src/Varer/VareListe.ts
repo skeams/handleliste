@@ -21,6 +21,7 @@ export interface Vare {
   vareId: string;
   navn: string;
   kategori: Kategori;
+  bilde?: any;
   antall?: number;
 }
 

@@ -7,7 +7,7 @@ import { KategoriKnapp } from './Komponenter/KategoriKnapp';
 import { Vare, hentAlleVarer } from './Varer/VareListe';
 
 const PageWrapper = styled.div`
-  background-color: #E6F7E7;
+  background-color: #f6faf0;
   min-width: 100%;
   min-height: 100vh;
   display: flex;
@@ -54,6 +54,7 @@ const HandlelisteApp = (): JSX.Element => {
             key={vare.vareId}
             farge={vare.kategori.farge}
             tekst={vare.navn}
+            bilde={vare.bilde}
           />
         ))}
       </VareListe>

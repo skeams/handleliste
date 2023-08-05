@@ -6,10 +6,10 @@ interface IKort {
 }
 
 const IconWrapper = styled.img`
-  width: 40px;
-  height: 40px;
-  min-width: 40px;
-  min-height: 40px;
+  width: 60px;
+  height: 60px;
+  min-width: 60px;
+  min-height: 60px;
 `;
 
 const VareNavn = styled.p`
@@ -24,7 +24,7 @@ const VareNavn = styled.p`
 `;
 
 const Kort = styled.div<IKort>`
-  background-color: ${({ farge }) => (farge ? farge : `#C4C4C4`)};
+  background-color: white;
   max-height: 70px;
   max-width: 70px;
   min-height: 70px;
@@ -34,12 +34,13 @@ const Kort = styled.div<IKort>`
   margin: 10px;
   padding: 10px;
   border-radius: 5px;
+  border: 2px solid ${({ farge }) => (farge ? farge : `#C4C4C4`)};
   align-items: center;
 `;
 
 interface IVarekort {
   tekst: string;
-  bilde?: HTMLImageElement;
+  bilde?: any;
   farge: string;
   antall?: number;
 }
@@ -47,10 +48,11 @@ interface IVarekort {
 export const VareKort: React.FC<IVarekort> = ({
   tekst,
   farge,
+  bilde,
   antall = 0,
 }): JSX.Element => (
   <Kort farge={farge}>
-    <IconWrapper />
+    <IconWrapper src={bilde} />
     <VareNavn>
       {tekst}
     </VareNavn>

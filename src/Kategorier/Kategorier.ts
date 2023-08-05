@@ -17,7 +17,7 @@ export interface Kategori {
 
 const Frukt: Kategori = {
   tittel: "Frukt",
-  farge: "green",
+  farge: "lightgreen",
   id: "fr",
 };
 
@@ -99,14 +99,14 @@ const PastaRis: Kategori = {
   id: "pa",
 };
 
-const PersonalCare: Kategori = {
-  tittel: "PersonalCare",
+const Personlig: Kategori = {
+  tittel: "Personlig",
   farge: "pink",
   id: "pc",
 };
 
-const HealthCare: Kategori = {
-  tittel: "HealthCare",
+const Helse: Kategori = {
+  tittel: "Helse",
   farge: "red",
   id: "hc",
 };
@@ -138,8 +138,8 @@ export const Kategorier = {
   Krydder,
   Husholdning,
   PastaRis,
-  PersonalCare,
-  HealthCare,
+  Personlig,
+  Helse,
   Drikke,
   Cart
 };

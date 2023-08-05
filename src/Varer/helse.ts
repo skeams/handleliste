@@ -3,8 +3,8 @@ import { Vare } from "./VareListe";
 
 export const helse: Vare[] = [
   {
-    kategori: Kategorier.HealthCare,
+    kategori: Kategorier.Helse,
     navn: "Paracet",
-    vareId: `${Kategorier.HealthCare.id}-1`,
+    vareId: `${Kategorier.Helse.id}-1`,
   },
 ];
